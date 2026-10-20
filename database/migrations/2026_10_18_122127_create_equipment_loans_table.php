@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('equipment_loans', function (Blueprint $table) {
             $table->id();
-             $table->unsignedBigInteger('operator_id');
+            $table->unsignedBigInteger('operator_id');
             $table->unsignedBigInteger('crew_id');
             $table->foreignId('equipment_id')->constrained()->cascadeOnDelete();
             $table->string('project_name');
