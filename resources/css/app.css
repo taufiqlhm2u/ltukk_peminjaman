@@ -26,7 +26,7 @@
 }
 
 @theme {
-    --color-accent: var(--color-sky-600);
-    --color-accent-content: var(--color-sky-600);
+    --color-accent: var(--color-fuchsia-600);
+    --color-accent-content: var(--color-fuchsia-600);
     --color-accent-foreground: var(--color-white);
 }

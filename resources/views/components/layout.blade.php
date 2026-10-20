@@ -18,12 +18,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body>
+<body class="bg-slate-200 min-h-screen antialiased">
     {{ $slot }}
 
-    <x-alert/>
     @livewireScripts
-    <flux:toast/>
     @fluxScripts
+    <flux:toast/>
+    <x-alert/>
 </body>
 </html>
