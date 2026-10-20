@@ -1,6 +1,6 @@
 <x-layout>
     <div class="w-full min-h-screen flex justify-center items-center">
-        <flux:card class="w-100 p-3">
+        <flux:card class="w-100 p-5 bg-white shadow">
             <div class="mb-3">
                 <flux:heading size="xl">Login</flux:heading>
                 <flux:text>Masuk ke sistem peminjaman</flux:text>
@@ -14,8 +14,8 @@
                         value="{{ old('email', '') }}" />
                 </div>
 
-                <div class="mb-3">
-                    <flux:input name="password" type="password" label="Password" viewable />
+                <div class="mb-4">
+                    <flux:input name="password" type="password" label="Password" placeholder="......" viewable />
                 </div>
 
                 <div>
