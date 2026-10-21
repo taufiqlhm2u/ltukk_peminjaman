@@ -11,7 +11,11 @@
 
         <flux:sidebar.nav>
             <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')">
-                Dashboard</flux:sidebar.item>
+                Dashboard
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="user" :href="route('admin.operator.index')" :current="request()->routeIs('admin.operator*')">
+                Petugas
+            </flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />

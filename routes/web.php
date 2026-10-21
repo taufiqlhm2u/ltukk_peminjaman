@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OpertatorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,10 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function() {
+        Route::resource('petugas', OpertatorController::class)->only(['index', 'create', 'edit', 'destroy'])->names('operator');
+    });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
