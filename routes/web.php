@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CrewController;
 use App\Http\Controllers\Admin\OpertatorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -19,6 +20,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function() {
         Route::resource('petugas', OpertatorController::class)->only(['index', 'create', 'edit', 'destroy'])->names('operator');
+        Route::resource('kru', CrewController::class)->only(['index', 'create', 'edit', 'destroy'])->names('crew');
     });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

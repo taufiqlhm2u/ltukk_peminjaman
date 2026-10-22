@@ -16,6 +16,7 @@
             <flux:sidebar.item icon="user" :href="route('admin.operator.index')" :current="request()->routeIs('admin.operator*')">
                 Petugas
             </flux:sidebar.item>
+            <flux:sidebar.item icon="briefcase" :href="route('admin.crew.index')" :current="request()->routeIs('admin.crew*')">Kru</flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />

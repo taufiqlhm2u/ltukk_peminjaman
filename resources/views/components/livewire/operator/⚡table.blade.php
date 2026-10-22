@@ -15,11 +15,13 @@ new class extends Component {
     public function sort($column)
     {
         if ($this->sortBy === $column) {
-            $this->sortDir = $this->sortDir == 'asc' ? 'desc' : 'asc';
+            $this->sortDir = $this->sortDir === 'asc' ? 'desc' : 'asc';
         } else {
             $this->sortBy = $column;
             $this->sortDir = 'asc';
         }
+
+        $this->resetPage();
     }
 
     #[Computed]
@@ -34,7 +36,7 @@ new class extends Component {
                 });
             })
             ->orderBy($this->sortBy, $this->sortDir)
-            ->paginate(10);
+            ->paginate();
     }
 };
 ?>
@@ -45,14 +47,14 @@ new class extends Component {
     <flux:card class="p-5">
         <div class="flex justify-end mb-4">
             <flux:input icon="magnifying-glass" wire:model.live.debounce.500ms="search"
-                placeholder="Cari nama, email atau telepon..." class="w-80!" />
+                placeholder="Cari nama, email atau telepon..." class="w-80!" autocomplete="off" />
         </div>
-        <flux:table>
+        <flux:table :paginate="$this->operators">
             <flux:table.columns>
                 <flux:table.column>No</flux:table.column>
-                <flux:table.column sortable :sorted="$sortBy == 'name'" :direction="$sortDir">Nama</flux:table.column>
-                <flux:table.column>Email</flux:table.column>
-                <flux:table.column>Telepon</flux:table.column>
+                <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDir" wire:click="sort('name')">Nama</flux:table.column>
+                <flux:table.column sortable :sorted="$sortBy === 'email'" :direction="$sortDir" wire:click="sort('email')">Email</flux:table.column>
+                <flux:table.column sortable :sorted="$sortBy === 'telpon'" :direction="$sortDir" wire:click="sort('telpon')">Telepon</flux:table.column>
                 <flux:table.column>Aksi</flux:table.column>
             </flux:table.columns>
             <flux:table.rows>
@@ -91,9 +93,9 @@ new class extends Component {
                         </div>
                     </flux:modal>
                 @empty
-                    <flux:table.row colspan="5">
-                        <flux:table.cell>
-                            <p class="mx-auto mt-5!">Tidak ada data yang ditemukan.</p></flux:table.cell>
+                    <flux:table.row >
+                        <flux:table.cell colspan="5" class="text-center">
+                            <p class="mt-5!">Tidak ada data yang ditemukan.</p></flux:table.cell>
                     </flux:table.row>
                 @endforelse
             </flux:table.rows>

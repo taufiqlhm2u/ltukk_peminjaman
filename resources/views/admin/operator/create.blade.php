@@ -1,4 +1,4 @@
-<x-sidebar title="Petugas">
+<x-sidebar title="Tambah Petugas">
     <div class="flex justify-between items-center gap-2 flex-wrap mb-3">
         <flux:heading size="xl">Tambah Petugas</flux:heading>
         <flux:button :href="route('admin.operator.index')" icon="arrow-left" variant="outline">Kembali
