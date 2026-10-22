@@ -34,7 +34,7 @@ new class extends Component {
     {
         $this->validate();
         try {
-            $petugas = User::where('role', 'petugas')->where('id', $this->petugas_id);
+            $petugas = User::findOrFail($this->petugas_id);
             $data = [
                 'name' => $this->nama,
                 'email' => $this->email,
