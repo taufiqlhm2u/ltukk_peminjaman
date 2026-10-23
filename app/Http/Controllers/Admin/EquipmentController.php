@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Equipment;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EquipmentController extends Controller
 {
@@ -12,7 +15,7 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.equipment.index');
     }
 
     /**
@@ -20,23 +23,7 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return view('admin.equipment.create');
     }
 
     /**
@@ -44,22 +31,26 @@ class EquipmentController extends Controller
      */
     public function edit(string $id)
     {
-        //
-    }
+        $eq = Equipment::findOrFail($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return view('admin.equipment.edit', compact('eq'));
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $eq = Equipment::findOrFail($id);
+
+        try {
+            if ($eq->image) {
+                Storage::disk('public')->delete($eq->image);
+            }
+
+            $eq->delete();
+            return redirect()->route('admin.equipment.index')->with('success', 'Alat berhasil dihapus.');
+        } catch (Exception $e) {
+            return back()->with('error', 'Gagal saat menghapus data alat.');
+        }
     }
 }
