@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CrewController;
+use App\Http\Controllers\Admin\EquipmentController;
 use App\Http\Controllers\Admin\OpertatorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -21,6 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function() {
         Route::resource('petugas', OpertatorController::class)->only(['index', 'create', 'edit', 'destroy'])->names('operator');
         Route::resource('kru', CrewController::class)->only(['index', 'create', 'edit', 'destroy'])->names('crew');
+        Route::resource('kategori-alat', CategoryController::class)->only(['index', 'create', 'edit', 'destroy'])->names('category');
+        Route::resource('alat', EquipmentController::class)->only(['index', 'create', 'edit', 'destroy'])->names('equipment');
     });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

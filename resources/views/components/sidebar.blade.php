@@ -17,6 +17,8 @@
                 Petugas
             </flux:sidebar.item>
             <flux:sidebar.item icon="briefcase" :href="route('admin.crew.index')" :current="request()->routeIs('admin.crew*')">Kru</flux:sidebar.item>
+            <flux:sidebar.item icon="squares-2x2" :href="route('admin.category.index')" :current="request()->routeIs('admin.category*')">kategori Alat</flux:sidebar.item>
+            <flux:sidebar.item icon="video-camera" :href="route('admin.equipment.index')" :current="request()->routeIs('admin.equipment*')">Alat</flux:sidebar.item>
         </flux:sidebar.nav>
 
         <flux:sidebar.spacer />
@@ -52,6 +54,11 @@
             <flux:button variant="danger" size="sm" type="submit">Ya, Logout</flux:button>
         </form>
     </flux:modal>
+
+    <flux:header class="lg:hidden bg-white border-b border-zinc-200">
+        <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+        <flux:heading class="ml-2">{{ config('app.name') }}</flux:heading>
+    </flux:header>
 
     <flux:main>
         {{ $slot }}
