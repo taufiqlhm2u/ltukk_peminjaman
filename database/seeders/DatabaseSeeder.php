@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -40,6 +41,14 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'role' => 'crew',
                 'telpon' => $faker->phoneNumber()
+            ]);
+        }
+
+        $category = ['Kamera', 'Audio', 'Lampu'];
+
+        foreach($category as $c){
+            Category::create([
+                'name' => $c
             ]);
         }
     }
